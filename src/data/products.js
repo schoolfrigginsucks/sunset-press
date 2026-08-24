@@ -65,7 +65,7 @@ export const PRODUCTS = [
     name: 'Press Max',
     tagline: 'Cordless. Goes the distance.',
     priceFrom: true,
-    price: 75.95,
+    price: 70.95,
     blurb:
       'Power that keeps up with you. USB rechargeable and totally cordless, so you can charge it once and juice wherever the day takes you. No outlets needed. Pick your battery life and never miss your fresh juice fix.',
     short: 'USB rechargeable, fully cordless. Charge once, juice anywhere.',
@@ -74,20 +74,20 @@ export const PRODUCTS = [
       'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746',
     specs: ['USB-C rechargeable', 'Fully cordless', 'Two battery sizes'],
     variants: [
-      { id: 'gid://shopify/ProductVariant/44770461122611', title: 'White · 3.7V 1300mAh', price: 75.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770461122611', title: 'White · 3.7V 1300mAh', price: 70.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746'
       },
-      { id: 'gid://shopify/ProductVariant/44770461155379', title: 'Olive Green · 3.7V 1300mAh', price: 75.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770461155379', title: 'Olive Green · 3.7V 1300mAh', price: 70.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_50_50_AM.png?v=1787575872'
       },
-      { id: 'gid://shopify/ProductVariant/44770461188147', title: 'Purple · 3.7V 1300mAh', price: 75.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770461188147', title: 'Purple · 3.7V 1300mAh', price: 70.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_49_19_AM.png?v=1787575825'
       },
-      { id: 'gid://shopify/ProductVariant/44770461220915', title: 'White · 7.4V 1500mAh ×2', price: 79.95, available: true
+      { id: 'gid://shopify/ProductVariant/44770461220915', title: 'White · 7.4V 1500mAh ×2', price: 74.95, available: true
       },
-      { id: 'gid://shopify/ProductVariant/44770461253683', title: 'Olive Green · 7.4V 1500mAh ×2', price: 79.95, available: true
+      { id: 'gid://shopify/ProductVariant/44770461253683', title: 'Olive Green · 7.4V 1500mAh ×2', price: 74.95, available: true
       },
-      { id: 'gid://shopify/ProductVariant/44770461286451', title: 'Purple · 7.4V 1500mAh ×2', price: 79.95, available: true
+      { id: 'gid://shopify/ProductVariant/44770461286451', title: 'Purple · 7.4V 1500mAh ×2', price: 74.95, available: true
       },
     ],
   },
@@ -97,7 +97,7 @@ export const PRODUCTS = [
     name: 'Press Go',
     tagline: 'Blend it. Sip it. Done.',
     priceFrom: true,
-    price: 55.95,
+    price: 50.95,
     blurb:
       'Blend it, sip it, done. No pouring, no extra cups, no cleanup, just fruit in, blend, and drink straight from the same cup. Perfect for the gym, the car, or your desk. Single cup for solo, double for sharing.',
     short: 'Blend and drink from the same cup. Zero cleanup.',
@@ -106,16 +106,16 @@ export const PRODUCTS = [
       'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/b7e836e6-567f-4090-add1-bbec7229a798.jpg?v=1787552153',
     specs: ['Blend-and-drink cup', 'Single or double', 'Rinse-clean in seconds'],
     variants: [
-      { id: 'gid://shopify/ProductVariant/44770586165299', title: 'Blue · single cup', price: 55.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586165299', title: 'Blue · single cup', price: 50.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/54f247e0-c82b-44c2-8373-65b1cd0127d8.jpg?v=1787552153'
       },
-      { id: 'gid://shopify/ProductVariant/44770586132531', title: 'Blue · double cup', price: 65.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586132531', title: 'Blue · double cup', price: 60.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/fb15005d-c0a0-4c00-95f8-57a8a1eb9c3d.jpg?v=1787552153'
       },
-      { id: 'gid://shopify/ProductVariant/44770586230835', title: 'Pink · single cup', price: 55.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586230835', title: 'Pink · single cup', price: 50.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/5e1aef13-16d1-43c7-90dc-8972292bf5cc.jpg?v=1787552153'
       },
-      { id: 'gid://shopify/ProductVariant/44770586198067', title: 'Pink · double cup', price: 65.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586198067', title: 'Pink · double cup', price: 60.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/3724ffc1-6c2c-45d9-8b5d-ed8b8c6d167b.jpg?v=1787552153'
       },
     ],
