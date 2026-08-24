@@ -23,6 +23,7 @@ export const BLOCKED_IMAGES = [
   '0805352e-da0e-4e83-a0c2-7b1cc9741359', // Press Max — red "7.4V" callout
   '90ff37f3-94c1-43a3-8599-2cee99d1bd50', // Press Max — red "7.4V" callout
   '9e02546d-8723-49c8-a2e9-cb6a46307efb', // Press Max — red "7.4V" callout
+  '_220x220q75_', // supplier thumbnails — 220px wide, far too soft for a hero
 ]
 
 export const isBlockedImage = (url) =>
@@ -35,25 +36,26 @@ export const PRODUCTS = [
     name: 'Press Mini',
     tagline: 'Hot or cold, in seconds.',
     priceFrom: false,
-    price: 59.95,
+    price: 49.95,
     blurb:
       'Hot juice, cold juice, your call. 18,000 RPM motor blasts through fruit in seconds, and a built-in hot and cold function lets you warm it up on a chilly morning or keep it icy cold when you want a refreshing glass. Small, fast, and ready whenever you are.',
     short: '18,000 RPM. Hot and cold at the touch of a button.',
     alt: 'Sunset Press Press Mini portable juicer in cream white, shown upright with its lid on',
     image:
-      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/2802488f-a3cc-4d40-a867-d7e3e44dec2a.png?v=1787543914',
+      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_14_AM_e10a5f87-a3f6-42ce-a986-7b585147d2ad.png?v=1787574861',
     specs: ['18,000 RPM motor', 'Hot + cold function', 'One-touch lid'],
     variants: [
-      { id: 'gid://shopify/ProductVariant/44770451488819', title: 'Cream White', price: 59.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/171dbfbc-f1b0-4375-b7b3-72f634df3b58.jpg?v=1787543913'
+      { id: 'gid://shopify/ProductVariant/44770451488819', title: 'Cream White', price: 49.95, available: true, image:
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_14_AM_e10a5f87-a3f6-42ce-a986-7b585147d2ad.png?v=1787574861'
       },
-      { id: 'gid://shopify/ProductVariant/44770451521587', title: 'Light Pink', price: 59.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/85033a0d-9be7-4faa-8c03-ade86e90ee28.jpg?v=1787543914'
+      { id: 'gid://shopify/ProductVariant/44770451521587', title: 'Light Pink', price: 49.95, available: true, image:
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_55_00_AM.png?v=1787576128'
       },
-      { id: 'gid://shopify/ProductVariant/44770451554355', title: 'Sky Blue', price: 59.95, available: true
+      { id: 'gid://shopify/ProductVariant/44770451554355', title: 'Sky Blue', price: 49.95, available: true, image:
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_29_40_AM_b31a02b6-046e-4a23-bd9a-5758518cb25f.png?v=1787574898'
       },
-      { id: 'gid://shopify/ProductVariant/44770451587123', title: 'Lilac Purple', price: 59.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/77bf3e01-31c3-45c7-9659-f7f7cd4752e6.jpg?v=1787543913'
+      { id: 'gid://shopify/ProductVariant/44770451587123', title: 'Lilac Purple', price: 49.95, available: true, image:
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_08_AM_96491a65-be73-493c-90ce-822a5c738cd2.png?v=1787574919'
       },
     ],
   },
@@ -69,17 +71,17 @@ export const PRODUCTS = [
     short: 'USB rechargeable, fully cordless. Charge once, juice anywhere.',
     alt: 'Three Sunset Press Press Max juicers in white, olive and purple, each filled with fresh fruit',
     image:
-      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/3937532a-607d-4f40-a27e-f367f3994d27.jpg?v=1787544047',
+      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746',
     specs: ['USB-C rechargeable', 'Fully cordless', 'Two battery sizes'],
     variants: [
       { id: 'gid://shopify/ProductVariant/44770461122611', title: 'White · 3.7V 1300mAh', price: 75.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/66e69a04-8289-4bfb-a655-6076567cb4f9.jpg?v=1787544046'
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746'
       },
       { id: 'gid://shopify/ProductVariant/44770461155379', title: 'Olive Green · 3.7V 1300mAh', price: 75.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/1de5217c-7b94-49d1-b19c-1b59ad4e2282.jpg?v=1787544046'
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_50_50_AM.png?v=1787575872'
       },
       { id: 'gid://shopify/ProductVariant/44770461188147', title: 'Purple · 3.7V 1300mAh', price: 75.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/7edbb4e5-50d3-4f59-aac5-b56249c31dc5.jpg?v=1787544046'
+        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_49_19_AM.png?v=1787575825'
       },
       { id: 'gid://shopify/ProductVariant/44770461220915', title: 'White · 7.4V 1500mAh ×2', price: 79.95, available: true
       },
@@ -107,13 +109,13 @@ export const PRODUCTS = [
       { id: 'gid://shopify/ProductVariant/44770586165299', title: 'Blue · single cup', price: 55.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/54f247e0-c82b-44c2-8373-65b1cd0127d8.jpg?v=1787552153'
       },
-      { id: 'gid://shopify/ProductVariant/44770586132531', title: 'Blue · double cup', price: 55.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586132531', title: 'Blue · double cup', price: 65.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/fb15005d-c0a0-4c00-95f8-57a8a1eb9c3d.jpg?v=1787552153'
       },
       { id: 'gid://shopify/ProductVariant/44770586230835', title: 'Pink · single cup', price: 55.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/5e1aef13-16d1-43c7-90dc-8972292bf5cc.jpg?v=1787552153'
       },
-      { id: 'gid://shopify/ProductVariant/44770586198067', title: 'Pink · double cup', price: 55.95, available: true, image:
+      { id: 'gid://shopify/ProductVariant/44770586198067', title: 'Pink · double cup', price: 65.95, available: true, image:
         'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/3724ffc1-6c2c-45d9-8b5d-ed8b8c6d167b.jpg?v=1787552153'
       },
     ],
