@@ -4,13 +4,16 @@ import { Section } from './Section'
 /* The four claims printed on the packaging, in the packaging's own order. */
 const FEATURES = [
   {
-    title: 'Portable',
-    line: 'On the go',
-    body: 'Fits a bag, a cupholder, a desk drawer. 350 mL, and lighter than a full water bottle.',
+    title: 'Carry loop',
+    line: 'Clips to anything',
+    body: 'A silicone loop on the collar — hook a finger through it, or clip it to a bag strap. 350 mL, lighter than a full water bottle.',
     icon: (
       <>
-        <rect x="6.5" y="3.5" width="11" height="17" rx="3.6" />
-        <path d="M10 7.2h4" />
+        <rect x="7.5" y="5.5" width="9" height="15" rx="3.2" />
+        <path d="M10.5 8.6h3" />
+        {/* the collar loop itself */}
+        <ellipse cx="5.1" cy="7.6" rx="2.4" ry="3" />
+        <path d="M7.4 7.6h1.4" />
       </>
     ),
   },

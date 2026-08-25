@@ -18,7 +18,7 @@ export const PRODUCT = {
   price: 49.95,
   volume: '350 mL',
   blurb:
-    'Fruit in, lid on, thirty seconds later you are drinking it. No jug to wash, no cups to find, no cable to hunt for. Charge it once a week and it just goes.',
+    'Fruit in, lid on, thirty seconds later you are drinking it. No jug to wash, no cups to find, no cable to hunt for. A silicone loop on the collar means it hangs off a finger or a bag strap on the way out the door.',
   lineup: {
     src: '/products/press-mini-lineup.jpg',
     alt: 'All four Press Mini colourways lined up together — blush pink with strawberry, white with golden kiwi, lilac with grapes, powder blue with mango',

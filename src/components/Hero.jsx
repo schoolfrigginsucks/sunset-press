@@ -89,9 +89,26 @@ export default function Hero() {
               {busy ? 'Adding…' : `Add ${colour.short} to cart`}
             </Button>
 
+            {/* The photography does not show the collar loop, so it is named
+                here, at the point of purchase, rather than left to be
+                discovered when the box arrives. */}
+            <ul className="mt-1 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1.5 text-xs text-ink-600">
+              <li className="flex items-center gap-1.5 font-medium">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <ellipse cx="7" cy="9" rx="3" ry="3.6" />
+                  <path d="M10 9h3.5" />
+                </svg>
+                Silicone carry loop
+              </li>
+              <li aria-hidden="true" className="text-ink-400">·</li>
+              <li>USB-C rechargeable</li>
+              <li aria-hidden="true" className="text-ink-400">·</li>
+              <li>Chrome lid included</li>
+            </ul>
+
             <a
               href="#bundle"
-              className="text-sm font-medium text-ink-600 underline decoration-ink-400/50 underline-offset-4 transition-colors hover:text-ink-900"
+              className="mt-1 text-sm font-medium text-ink-600 underline decoration-ink-400/50 underline-offset-4 transition-colors hover:text-ink-900"
             >
               Or buy 3, get 1 free
             </a>
