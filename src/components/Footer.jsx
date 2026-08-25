@@ -4,10 +4,9 @@ const NAV = [
   {
     title: 'Shop',
     links: [
-      ['Press Mini', '#shop'],
-      ['Press Max', '#shop'],
-      ['Press Go', '#shop'],
-      ['Bundles', '#bundles'],
+      ['Press Mini', '#top'],
+      ['Colours', '#colours'],
+      ['Bundles', '#bundle'],
     ],
   },
   {
@@ -22,7 +21,7 @@ const NAV = [
   {
     title: 'Company',
     links: [
-      ['Our story', '#why'],
+      ['How it works', '#how'],
       ['Reviews', '#reviews'],
       ['Wholesale', '#'],
     ],
@@ -59,15 +58,15 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-ink-900/[0.08] bg-cream-200/50 px-5 pb-10 pt-16 sm:px-8 sm:pt-20">
+    <footer className="border-t border-ink-900/[0.07] bg-sand-300/45 px-5 pb-10 pt-16 sm:px-8 sm:pt-20">
       <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div>
-            <a href="#top" className="text-xl text-ink-900" aria-label="Sunset Press — home">
+            <a href="#top" className="text-xl" aria-label="Sunset Press — home">
               <Logo />
             </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-600">
-              Portable presses for people who'd rather be outside. Designed in Perth, shipped
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-600">
+              One very good bottle, in four colours. Designed in Perth, shipped
               Australia-wide.
             </p>
 
@@ -118,19 +117,11 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-ink-900/[0.08] pt-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-ink-900/[0.07] pt-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Sunset Press. All prices in AUD, incl. GST.</p>
           <ul className="flex gap-5">
-            <li>
-              <a href="#" className="transition-colors hover:text-ink-600">
-                Privacy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="transition-colors hover:text-ink-600">
-                Terms
-              </a>
-            </li>
+            <li><a href="#" className="transition-colors hover:text-ink-600">Privacy</a></li>
+            <li><a href="#" className="transition-colors hover:text-ink-600">Terms</a></li>
           </ul>
         </div>
       </div>

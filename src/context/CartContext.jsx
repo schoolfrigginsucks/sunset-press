@@ -15,27 +15,25 @@ import {
   removeCartLine,
   updateCartLine,
 } from '../lib/shopify'
-import { PRODUCTS } from '../data/products'
+import { COLOURS, PRODUCT } from '../data/products'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'sunset-press:cart-id'
 
 /** Flatten the static catalogue so demo mode can resolve a variant id -> details. */
 const VARIANT_INDEX = Object.fromEntries(
-  PRODUCTS.flatMap((p) =>
-    p.variants.map((v) => [
-      v.id,
-      {
-        variantId: v.id,
-        variantTitle: v.title,
-        productTitle: p.name,
-        image: p.image,
-        imageAlt: p.alt,
-        listUnitPrice: v.price,
-        unitPrice: v.price,
-      },
-    ])
-  )
+  COLOURS.map((c) => [
+    c.variantId,
+    {
+      variantId: c.variantId,
+      variantTitle: c.name,
+      productTitle: PRODUCT.name,
+      image: c.image,
+      imageAlt: c.alt,
+      listUnitPrice: c.price,
+      unitPrice: c.price,
+    },
+  ])
 )
 
 /** Demo-mode cart maths, so the drawer behaves identically without credentials. */

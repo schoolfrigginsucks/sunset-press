@@ -1,171 +1,108 @@
 /**
- * Static product catalogue.
+ * Sunset Press is a one-product store: the Press Mini, in four colourways.
  *
- * This is the *fallback* — the site renders perfectly from this alone, so you
- * can design and demo without credentials. Once VITE_SHOPIFY_STOREFRONT_TOKEN
- * is set, `lib/shopify.js` fetches the same three products live by `handle`
- * and overlays real prices, variants and availability on top of this copy.
+ * Every colourway carries its own palette, sampled from the product photography
+ * itself — `swatch` is the actual silicone colour, `accent` is the darkened
+ * version that stays legible as UI, and `glow` is the wash used behind the
+ * bottle. Selecting a colour retints the whole page from these values.
  *
- * Handles and variant IDs below were read from lunarest-store.myshopify.com.
+ * Images are local (public/products) so the page never waits on a third-party
+ * CDN. The same files are uploaded to Shopify, which is what the cart shows.
  */
 
-/**
- * Supplier images that still carry listing text burned into them — red
- * annotation boxes, "1pcs", voltage callouts. They came with the dropship
- * photos and look wrong on a premium storefront, so they are filtered out of
- * galleries and variant swatches alike.
- *
- * These are matched on filename. Replace the photos in Shopify admin, then
- * empty this array — nothing else needs changing.
- */
-export const BLOCKED_IMAGES = [
-  '4d45d2d8-db4b-435b-a562-35445c4fe361', // Press Mini — "Sky Blue 1pcs" + dashed box
-  '0805352e-da0e-4e83-a0c2-7b1cc9741359', // Press Max — red "7.4V" callout
-  '90ff37f3-94c1-43a3-8599-2cee99d1bd50', // Press Max — red "7.4V" callout
-  '9e02546d-8723-49c8-a2e9-cb6a46307efb', // Press Max — red "7.4V" callout
-  '_220x220q75_', // supplier thumbnails — 220px wide, far too soft for a hero
-]
+export const PRODUCT = {
+  id: 'press-mini',
+  handle: 'portable-electric-fruit-juicer-with-heating-function',
+  name: 'Press Mini',
+  tagline: 'Blend it. Sip it. Done.',
+  price: 49.95,
+  volume: '350 mL',
+  blurb:
+    'Fruit in, lid on, thirty seconds later you are drinking it. No jug to wash, no cups to find, no cable to hunt for. Charge it once a week and it just goes.',
+  lineup: {
+    src: '/products/press-mini-lineup.jpg',
+    alt: 'All four Press Mini colourways lined up together — blush pink with strawberry, white with golden kiwi, lilac with grapes, powder blue with mango',
+  },
+  lifestyle: {
+    src: '/products/press-mini-lifestyle.jpg',
+    alt: 'A hand dropping a strawberry into a white Press Mini on a kitchen bench, beside a glass of milk and a board of cut fruit',
+  },
+}
 
-export const isBlockedImage = (url) =>
-  !url || BLOCKED_IMAGES.some((fragment) => String(url).includes(fragment))
-
-export const PRODUCTS = [
+export const COLOURS = [
   {
-    id: 'press-mini',
-    handle: 'portable-electric-fruit-juicer-with-heating-function',
-    name: 'Press Mini',
-    tagline: 'Hot or cold, in seconds.',
-    priceFrom: false,
+    id: 'pink',
+    variantId: 'gid://shopify/ProductVariant/44770451521587',
+    name: 'Blush Pink',
+    short: 'Blush',
+    fruit: 'Strawberry + watermelon',
     price: 49.95,
-    blurb:
-      'Hot juice, cold juice, your call. 18,000 RPM motor blasts through fruit in seconds, and a built-in hot and cold function lets you warm it up on a chilly morning or keep it icy cold when you want a refreshing glass. Small, fast, and ready whenever you are.',
-    short: '18,000 RPM. Hot and cold at the touch of a button.',
-    alt: 'Sunset Press Press Mini portable juicer in cream white, shown upright with its lid on',
-    image:
-      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_14_AM_e10a5f87-a3f6-42ce-a986-7b585147d2ad.png?v=1787574861',
-    specs: ['18,000 RPM motor', 'Hot + cold function', 'One-touch lid'],
-    variants: [
-      { id: 'gid://shopify/ProductVariant/44770451488819', title: 'Cream White', price: 49.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_14_AM_e10a5f87-a3f6-42ce-a986-7b585147d2ad.png?v=1787574861'
-      },
-      { id: 'gid://shopify/ProductVariant/44770451521587', title: 'Light Pink', price: 49.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_55_00_AM.png?v=1787576128'
-      },
-      { id: 'gid://shopify/ProductVariant/44770451554355', title: 'Sky Blue', price: 49.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_29_40_AM_b31a02b6-046e-4a23-bd9a-5758518cb25f.png?v=1787574898'
-      },
-      { id: 'gid://shopify/ProductVariant/44770451587123', title: 'Lilac Purple', price: 49.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_32_08_AM_96491a65-be73-493c-90ce-822a5c738cd2.png?v=1787574919'
-      },
-    ],
+    available: true,
+    swatch: '#f7bcae',
+    accent: '#c25b47',
+    glow: 'rgba(247, 188, 174, 0.55)',
+    image: '/products/press-mini-pink.jpg',
+    alt: 'Press Mini in blush pink, filled with halved strawberries and cubes of watermelon, chrome lid resting beside it',
   },
   {
-    id: 'press-max',
-    handle: 'portable-usb-rechargeable-electric-juicer',
-    name: 'Press Max',
-    tagline: 'Cordless. Goes the distance.',
-    priceFrom: true,
-    price: 70.95,
-    blurb:
-      'Power that keeps up with you. USB rechargeable and totally cordless, so you can charge it once and juice wherever the day takes you. No outlets needed. Pick your battery life and never miss your fresh juice fix.',
-    short: 'USB rechargeable, fully cordless. Charge once, juice anywhere.',
-    alt: 'Three Sunset Press Press Max juicers in white, olive and purple, each filled with fresh fruit',
-    image:
-      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746',
-    specs: ['USB-C rechargeable', 'Fully cordless', 'Two battery sizes'],
-    variants: [
-      { id: 'gid://shopify/ProductVariant/44770461122611', title: 'White · 3.7V 1300mAh', price: 70.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_47_57_AM.png?v=1787575746'
-      },
-      { id: 'gid://shopify/ProductVariant/44770461155379', title: 'Olive Green · 3.7V 1300mAh', price: 70.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_50_50_AM.png?v=1787575872'
-      },
-      { id: 'gid://shopify/ProductVariant/44770461188147', title: 'Purple · 3.7V 1300mAh', price: 70.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/ChatGPT_Image_Aug_24_2026_at_05_49_19_AM.png?v=1787575825'
-      },
-      { id: 'gid://shopify/ProductVariant/44770461220915', title: 'White · 7.4V 1500mAh ×2', price: 74.95, available: true
-      },
-      { id: 'gid://shopify/ProductVariant/44770461253683', title: 'Olive Green · 7.4V 1500mAh ×2', price: 74.95, available: true
-      },
-      { id: 'gid://shopify/ProductVariant/44770461286451', title: 'Purple · 7.4V 1500mAh ×2', price: 74.95, available: true
-      },
-    ],
+    id: 'white',
+    variantId: 'gid://shopify/ProductVariant/44770451488819',
+    name: 'Cream White',
+    short: 'Cream',
+    fruit: 'Golden kiwifruit',
+    price: 49.95,
+    available: true,
+    swatch: '#f4ece5',
+    accent: '#8a7361',
+    glow: 'rgba(226, 209, 193, 0.55)',
+    image: '/products/press-mini-white.jpg',
+    alt: 'Press Mini in cream white, filled with thick slices of golden kiwifruit, chrome lid resting beside it',
   },
   {
-    id: 'press-go',
-    handle: 'portable-rechargeable-blender-juicer-cup',
-    name: 'Press Go',
-    tagline: 'Blend it. Sip it. Done.',
-    priceFrom: true,
-    price: 50.95,
-    blurb:
-      'Blend it, sip it, done. No pouring, no extra cups, no cleanup, just fruit in, blend, and drink straight from the same cup. Perfect for the gym, the car, or your desk. Single cup for solo, double for sharing.',
-    short: 'Blend and drink from the same cup. Zero cleanup.',
-    alt: 'Sunset Press Press Go rechargeable blender cup in blue and pink',
-    image:
-      'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/b7e836e6-567f-4090-add1-bbec7229a798.jpg?v=1787552153',
-    specs: ['Blend-and-drink cup', 'Single or double', 'Rinse-clean in seconds'],
-    variants: [
-      { id: 'gid://shopify/ProductVariant/44770586165299', title: 'Blue · single cup', price: 50.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/54f247e0-c82b-44c2-8373-65b1cd0127d8.jpg?v=1787552153'
-      },
-      { id: 'gid://shopify/ProductVariant/44770586132531', title: 'Blue · double cup', price: 60.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/fb15005d-c0a0-4c00-95f8-57a8a1eb9c3d.jpg?v=1787552153'
-      },
-      { id: 'gid://shopify/ProductVariant/44770586230835', title: 'Pink · single cup', price: 50.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/5e1aef13-16d1-43c7-90dc-8972292bf5cc.jpg?v=1787552153'
-      },
-      { id: 'gid://shopify/ProductVariant/44770586198067', title: 'Pink · double cup', price: 60.95, available: true, image:
-        'https://cdn.shopify.com/s/files/1/0701/0176/2099/files/3724ffc1-6c2c-45d9-8b5d-ed8b8c6d167b.jpg?v=1787552153'
-      },
-    ],
+    id: 'purple',
+    variantId: 'gid://shopify/ProductVariant/44770451587123',
+    name: 'Lilac Purple',
+    short: 'Lilac',
+    fruit: 'Grape + blueberry',
+    price: 49.95,
+    available: true,
+    swatch: '#bea0df',
+    accent: '#7048a8',
+    glow: 'rgba(190, 160, 223, 0.55)',
+    image: '/products/press-mini-purple.jpg',
+    alt: 'Press Mini in lilac purple, filled with red grapes, blueberries and green grapes, chrome lid resting beside it',
+  },
+  {
+    id: 'blue',
+    variantId: 'gid://shopify/ProductVariant/44770451554355',
+    name: 'Sky Blue',
+    short: 'Sky',
+    fruit: 'Mango + cantaloupe',
+    price: 49.95,
+    available: true,
+    swatch: '#93c6ed',
+    accent: '#2f74a8',
+    glow: 'rgba(147, 198, 237, 0.55)',
+    image: '/products/press-mini-blue.jpg',
+    alt: 'Press Mini in powder blue, filled with cubes of ripe mango and cantaloupe, chrome lid resting beside it',
   },
 ]
 
 /**
- * Bundle tiers.
+ * Bundle tiers. `slots` is how many bottles the customer configures.
  *
- * `slots` = how many units the customer configures.
- * `freeUnits` / `halfPriceUnits` = how many of those are discounted.
- *
- * IMPORTANT: these are *display* maths only. The real money is worked out by a
- * Shopify "Buy X Get Y" automatic discount at checkout — see README.
- * Keep the two in sync or the checkout total will not match the page.
+ * IMPORTANT: display maths only. Shopify's "Buy X Get Y" automatic discounts do
+ * the real arithmetic at checkout — see README. Keep the two in step.
  */
 export const TIERS = [
-  {
-    id: 'single',
-    slots: 1,
-    label: 'Buy 1',
-    sub: 'Just the one, thanks',
-    badge: null,
-    halfPriceUnits: 0,
-    freeUnits: 0,
-  },
-  {
-    id: 'duo',
-    slots: 3,
-    label: 'Buy 2, Get 1 at 50% Off',
-    sub: 'Three presses, one at half price',
-    badge: 'Most Popular',
-    halfPriceUnits: 1,
-    freeUnits: 0,
-  },
-  {
-    id: 'trio',
-    slots: 4,
-    label: 'Buy 3, Get 1 Free',
-    sub: 'Four presses, pay for three',
-    badge: 'Best Value',
-    halfPriceUnits: 0,
-    freeUnits: 1,
-  },
+  { id: 'single', slots: 1, label: 'One bottle', sub: 'Just the one', badge: null, halfPriceUnits: 0, freeUnits: 0 },
+  { id: 'duo', slots: 3, label: 'Buy 2, get 1 half price', sub: 'Three bottles', badge: 'Most Popular', halfPriceUnits: 1, freeUnits: 0 },
+  { id: 'trio', slots: 4, label: 'Buy 3, get 1 free', sub: 'One of each colour', badge: 'Best Value', halfPriceUnits: 0, freeUnits: 1 },
 ]
 
 /**
- * Bundle discounts apply to the *cheapest* item(s) in the bundle — this
- * mirrors how Shopify's Buy X Get Y automatic discount picks its free item.
- * Returns { subtotal, total, saving } in dollars.
+ * Discounts land on the cheapest bottle(s), mirroring how Shopify's Buy X Get Y
+ * picks its free item. Returns dollars.
  */
 export function priceBundle(unitPrices, tier) {
   const subtotal = unitPrices.reduce((sum, p) => sum + p, 0)
@@ -173,19 +110,15 @@ export function priceBundle(unitPrices, tier) {
 
   let saving = 0
   let i = 0
-  for (let n = 0; n < tier.freeUnits && i < ascending.length; n++, i++) {
-    saving += ascending[i]
-  }
-  for (let n = 0; n < tier.halfPriceUnits && i < ascending.length; n++, i++) {
-    saving += ascending[i] * 0.5
-  }
+  for (let n = 0; n < tier.freeUnits && i < ascending.length; n++, i++) saving += ascending[i]
+  for (let n = 0; n < tier.halfPriceUnits && i < ascending.length; n++, i++) saving += ascending[i] * 0.5
 
-  return { subtotal, saving, total: subtotal - saving }
+  // Round to cents the way Shopify does, or a half-price line drifts a cent
+  // away from the checkout total and the page looks like it is lying.
+  const cents = (n) => Math.round(n * 100) / 100
+  const roundedSaving = cents(saving)
+  return { subtotal: cents(subtotal), saving: roundedSaving, total: cents(subtotal) - roundedSaving }
 }
 
 export const money = (n) =>
-  new Intl.NumberFormat('en-AU', {
-    style: 'currency',
-    currency: 'AUD',
-    minimumFractionDigits: 2,
-  }).format(n)
+  new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2 }).format(n)

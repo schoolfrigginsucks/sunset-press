@@ -1,62 +1,51 @@
 import Reveal from './Reveal'
-import { Eyebrow, Section } from './Section'
+import { Section } from './Section'
 
-const ICON = 'h-6 w-6'
-
+/* The four claims printed on the packaging, in the packaging's own order. */
 const FEATURES = [
   {
-    title: 'Genuinely portable',
-    body: 'Fits a bag, a cupholder, a desk drawer. Weighs less than a full water bottle.',
+    title: 'Portable',
+    line: 'On the go',
+    body: 'Fits a bag, a cupholder, a desk drawer. 350 mL, and lighter than a full water bottle.',
     icon: (
-      <svg viewBox="0 0 24 24" className={ICON} fill="none" aria-hidden="true">
-        <rect x="7" y="3" width="10" height="18" rx="3.5" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M10 7h4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
+      <>
+        <rect x="6.5" y="3.5" width="11" height="17" rx="3.6" />
+        <path d="M10 7.2h4" />
+      </>
     ),
   },
   {
-    title: 'Cordless, USB-C',
-    body: 'Charge it once, use it all week. No outlet, no cable trailing across the bench.',
+    title: 'Powerful',
+    line: 'Quick blend',
+    body: 'An 18,000 RPM motor and six blades. Through frozen berries in seconds.',
     icon: (
-      <svg viewBox="0 0 24 24" className={ICON} fill="none" aria-hidden="true">
-        <path
-          d="M13 2 5.5 13.5H11L10 22l8-11.5h-5.5L13 2Z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <>
+        <path d="M13 2.4 5.8 13.6H11L10.2 21.6 18.2 10.4H13L13 2.4Z" />
+      </>
     ),
   },
   {
-    title: 'Fruit to glass in 30s',
-    body: 'An 18,000 RPM motor and six blades. Frozen berries included.',
+    title: 'Rechargeable',
+    line: 'USB-C',
+    body: 'Charge it once, use it all week. No outlet, no cable across the bench.',
     icon: (
-      <svg viewBox="0 0 24 24" className={ICON} fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
-        <path d="M12 7v5.2l3.2 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
+      <>
+        <rect x="4.5" y="8" width="13" height="8" rx="2.4" />
+        <path d="M19.6 11v2" />
+        <path d="M7.5 11.2v1.6M10.6 11.2v1.6" />
+      </>
     ),
   },
   {
-    title: 'Hot and cold',
-    body: 'Warm soup on a cold morning, iced smoothie in February. One button.',
+    title: 'Easy to clean',
+    line: 'Rinse to clean',
+    body: 'Drink from the bottle you blended in. Half fill, pulse once, tip out. Done.',
     icon: (
-      <svg viewBox="0 0 24 24" className={ICON} fill="none" aria-hidden="true">
-        <path
-          d="M12 3v18M12 7.5 8.8 5.4M12 7.5l3.2-2.1M12 16.5l-3.2 2.1M12 16.5l3.2 2.1"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-        />
-        <path
-          d="M5 8.2 19 15.8M19 8.2 5 15.8"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          opacity="0.45"
-        />
-      </svg>
+      <>
+        <path d="M8 3.2h8l-1 4.2H9L8 3.2Z" />
+        <path d="M9 7.4h6v10.4a2.6 2.6 0 0 1-2.6 2.6h-0.8A2.6 2.6 0 0 1 9 17.8V7.4Z" />
+        <path d="M9.6 12.6h4.8" />
+      </>
     ),
   },
 ]
@@ -64,34 +53,43 @@ const FEATURES = [
 export default function Features() {
   return (
     <Section id="why" className="scroll-mt-24">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-        <Reveal>
-          <Eyebrow>Why Sunset Press</Eyebrow>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.15rem)] font-bold leading-[1.04] text-ink-900">
-            Built to be used,
-            <br />
-            not admired.
-          </h2>
-          <p className="mt-4 max-w-sm text-lg leading-relaxed text-ink-600">
-            Every part earns its place. Nothing to assemble, nothing to lose, nothing you'll
-            resent washing up.
-          </p>
-        </Reveal>
+      <Reveal className="mx-auto max-w-xl text-center">
+        <p className="label-type text-[0.62rem] text-ink-400">Why it earns the bench space</p>
+        <h2 className="mt-5 font-display text-[clamp(2rem,5vw,3.3rem)] font-bold leading-[1.03] text-ink-900">
+          Everything it needs.
+          <br />
+          Nothing it doesn&rsquo;t.
+        </h2>
+      </Reveal>
 
-        <ul className="grid gap-x-8 gap-y-9 sm:grid-cols-2">
-          {FEATURES.map((f, i) => (
-            <Reveal as="li" key={f.title} delay={i * 90}>
-              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-ember-500/12 to-coral-500/12 text-ember-600">
+      <ul className="mt-14 grid gap-x-8 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
+        {FEATURES.map((f, i) => (
+          <Reveal as="li" key={f.title} delay={i * 90} className="text-center sm:text-left">
+            <span
+              className="tinted mx-auto grid h-14 w-14 place-items-center rounded-full sm:mx-0"
+              style={{ backgroundColor: 'var(--swatch)' }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-6 w-6 text-ink-900"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 {f.icon}
-              </span>
-              <h3 className="mt-4 font-display text-lg font-bold tracking-tight text-ink-900">
-                {f.title}
-              </h3>
-              <p className="mt-1.5 text-[0.95rem] leading-relaxed text-ink-600">{f.body}</p>
-            </Reveal>
-          ))}
-        </ul>
-      </div>
+              </svg>
+            </span>
+            <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-ink-900">
+              {f.title}
+            </h3>
+            <p className="label-type mt-1.5 text-[0.58rem] text-ink-400">{f.line}</p>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-600">{f.body}</p>
+          </Reveal>
+        ))}
+      </ul>
     </Section>
   )
 }

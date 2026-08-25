@@ -1,49 +1,54 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------
-   Sunset Press design tokens
-   Warm, premium, golden-hour. Gradient is an accent — never wallpaper.
+   Sunset Press — Press Mini
+   The palette is lifted from the product photography: --sand is the
+   exact seamless backdrop the bottles were shot on, so the page reads
+   as one continuous surface rather than photos pasted onto a website.
    --------------------------------------------------------------- */
 @theme {
   --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Grounds */
-  --color-cream-50: #fffcf8;
-  --color-cream-100: #fdf7f0;
-  --color-cream-200: #f7ede1;
-  --color-cream-300: #eeddcb;
+  /* Studio grounds, sampled from the photographs */
+  --color-sand-50: #fdf8f3;
+  --color-sand-100: #f9f1ea;
+  --color-sand-200: #f6ede6;
+  --color-sand-300: #f0e3d9;
+  --color-sand-400: #e3d2c4;
 
-  /* Ink — deep plum-charcoal, warmer than a neutral black */
-  --color-ink-900: #241a26;
-  --color-ink-800: #3a2b3d;
-  --color-ink-600: #6b5a6e;
-  --color-ink-400: #9c8b9e;
+  /* Warm charcoal — reads as the label type, never pure black */
+  --color-ink-900: #241c18;
+  --color-ink-800: #3b302a;
+  --color-ink-600: #6d5d53;
+  --color-ink-400: #9c8b7f;
 
-  /* Sunset accents */
-  --color-ember-500: #f97316;
-  --color-ember-600: #e35c14;
-  --color-coral-500: #fb6f7d;
-  --color-coral-600: #ef4f66;
-  --color-plum-700: #7a2f5e;
-  --color-plum-900: #4a1b3c;
+  /* Chrome, from the lid */
+  --color-chrome-300: #d8d2cc;
+  --color-chrome-500: #a9a19a;
 
-  --shadow-lift: 0 1px 2px rgb(36 26 38 / 0.04), 0 12px 32px -12px rgb(36 26 38 / 0.14);
-  --shadow-lift-lg: 0 2px 4px rgb(36 26 38 / 0.05), 0 28px 60px -20px rgb(36 26 38 / 0.22);
+  --shadow-drop: 0 2px 6px rgb(36 28 24 / 0.05), 0 18px 44px -18px rgb(36 28 24 / 0.20);
+  --shadow-drop-lg: 0 4px 10px rgb(36 28 24 / 0.06), 0 40px 80px -28px rgb(36 28 24 / 0.28);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
+  /* Retinted live by ColourContext as the customer switches colourway */
+  :root {
+    --accent: #c25b47;
+    --swatch: #f7bcae;
+    --glow: rgba(247, 188, 174, 0.55);
+  }
+
   html {
     scroll-behavior: smooth;
-    /* keep sticky nav from covering anchor targets */
     scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--color-cream-100);
+    background-color: var(--color-sand-200);
     color: var(--color-ink-900);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -52,23 +57,19 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.033em;
+    letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
   p { text-wrap: pretty; }
 
-  /* A single, consistent focus ring across the whole site */
   :focus-visible {
-    outline: 2px solid var(--color-ember-600);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
-  ::selection {
-    background: var(--color-ember-500);
-    color: #fff;
-  }
+  ::selection { background: var(--swatch); color: var(--color-ink-900); }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -81,48 +82,35 @@
 }
 
 @layer utilities {
-  .sunset-gradient {
-    background-image: linear-gradient(
-      100deg,
-      var(--color-ember-500) 0%,
-      var(--color-coral-500) 52%,
-      var(--color-plum-700) 100%
-    );
+  /* The bottle label's own typographic voice: wide, light, uppercase */
+  .label-type {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-weight: 400;
   }
 
-  .sunset-text {
-    background-image: linear-gradient(
-      100deg,
-      var(--color-ember-600) 0%,
-      var(--color-coral-600) 48%,
-      var(--color-plum-700) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .accent-text { color: var(--accent); }
+  .accent-bg { background-color: var(--accent); }
+  .swatch-bg { background-color: var(--swatch); }
+
+  /* Retinting should feel like light changing, not a colour flipping */
+  .tinted {
+    transition: background-color 700ms var(--ease-out-soft),
+                color 700ms var(--ease-out-soft),
+                border-color 700ms var(--ease-out-soft),
+                box-shadow 700ms var(--ease-out-soft);
   }
 
-  /* Scroll-reveal — driven by IntersectionObserver in useReveal.js */
   .reveal {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
-    transition:
-      opacity 0.7s var(--ease-out-soft),
-      transform 0.7s var(--ease-out-soft);
+    transform: translate3d(0, 20px, 0);
+    transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
     transition-delay: var(--reveal-delay, 0ms);
   }
-  .reveal[data-revealed="true"] {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal[data-revealed="true"] { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; }
-  }
-
-  /* Gallery image swap */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
   }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
