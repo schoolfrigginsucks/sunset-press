@@ -18,6 +18,18 @@ const API_VERSION = import.meta.env.VITE_SHOPIFY_API_VERSION || '2025-10'
 /** True once both credentials are present. Everything degrades gracefully if not. */
 export const isShopifyConfigured = Boolean(DOMAIN && TOKEN)
 
+/*
+ * Shipping without credentials degrades to a demo cart that cannot check out —
+ * which looks fine in review and silently loses every sale. Say so immediately.
+ */
+if (!isShopifyConfigured && typeof window !== 'undefined') {
+  console.error(
+    '[Sunset Press] Running WITHOUT Shopify credentials — the cart is a local ' +
+      'demo and checkout will not work. Set VITE_SHOPIFY_STORE_DOMAIN and ' +
+      'VITE_SHOPIFY_STOREFRONT_TOKEN, then rebuild.'
+  )
+}
+
 const ENDPOINT = `https://${DOMAIN}/api/${API_VERSION}/graphql.json`
 
 async function storefront(query, variables = {}) {

@@ -178,9 +178,17 @@ export function CartProvider({ children }) {
     if (cart?.checkoutUrl) {
       window.location.href = cart.checkoutUrl
     } else {
-      setError(
-        'Checkout needs your Shopify Storefront credentials. Add them to .env and restart the dev server.'
+      /*
+       * A shopper must never be shown setup instructions. Tell them something
+       * true and human, and put the actionable detail in the console where the
+       * person who can fix it will actually see it.
+       */
+      console.error(
+        '[Sunset Press] Checkout unavailable: VITE_SHOPIFY_STORE_DOMAIN and ' +
+          'VITE_SHOPIFY_STOREFRONT_TOKEN are missing from this build. Vite inlines ' +
+          'them at build time, so set them on the host and redeploy.'
       )
+      setError('Checkout is temporarily unavailable. Please try again in a few minutes.')
     }
   }, [cart])
 
