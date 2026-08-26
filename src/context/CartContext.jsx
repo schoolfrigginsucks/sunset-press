@@ -17,6 +17,7 @@ import {
   updateCartLine,
 } from '../lib/shopify'
 import { COLOURS, PRODUCT } from '../data/products'
+import { trackAddToCart, trackInitiateCheckout } from '../lib/pixel'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'sunset-press:cart-id'
@@ -112,6 +113,16 @@ export function CartProvider({ children }) {
       const clean = lines.filter((l) => l.merchandiseId && l.quantity > 0)
       if (!clean.length) return
 
+      // Report the intent to Meta before any network work, so an API hiccup
+      // does not lose the signal the ad account is optimising on.
+      trackAddToCart(
+        clean,
+        clean.reduce((sum, l) => {
+          const c = COLOURS.find((x) => x.variantId === l.merchandiseId)
+          return sum + (c ? c.price * l.quantity : 0)
+        }, 0)
+      )
+
       if (!isShopifyConfigured) {
         // Demo mode — merge into the local line list.
         clean.forEach(({ merchandiseId, quantity }) => {
@@ -182,6 +193,8 @@ export function CartProvider({ children }) {
      * homepage; the permalink route rebuilds the same cart, keeps the automatic
      * bundle discounts, and lands on the real checkout.
      */
+    trackInitiateCheckout(cart)
+
     const permalink = buildCartPermalink(cart?.lines)
     if (permalink) {
       window.location.href = permalink

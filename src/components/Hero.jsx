@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { useColour } from '../context/ColourContext'
 import { useCart } from '../context/CartContext'
 import { PRODUCT, money } from '../data/products'
+import { trackViewContent } from '../lib/pixel'
 import Button from './Button'
 import ColourPicker from './ColourPicker'
 import Reveal from './Reveal'
@@ -8,6 +10,12 @@ import Reveal from './Reveal'
 export default function Hero() {
   const { colour, colours } = useColour()
   const { addLines, busy } = useCart()
+
+  // One ViewContent per visit — the landing IS the product page here.
+  useEffect(() => {
+    trackViewContent({ id: colour.variantId, name: PRODUCT.name, price: colour.price })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <section
