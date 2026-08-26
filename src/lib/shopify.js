@@ -13,7 +13,27 @@
 
 const DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN
 const TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN
-const API_VERSION = import.meta.env.VITE_SHOPIFY_API_VERSION || '2025-10'
+const DEFAULT_API_VERSION = '2025-10'
+const RAW_API_VERSION = import.meta.env.VITE_SHOPIFY_API_VERSION
+
+/**
+ * Shopify API versions are strictly YYYY-MM, and this value is interpolated
+ * straight into the request URL. A malformed one (a stray word, a pasted label,
+ * a trailing space) produces an invalid URL, so every call dies with an opaque
+ * "Load failed" and the whole storefront looks broken for a reason nothing on
+ * screen explains. Anything that is not the right shape is discarded.
+ */
+const API_VERSION = /^\d{4}-\d{2}$/.test(String(RAW_API_VERSION ?? '').trim())
+  ? String(RAW_API_VERSION).trim()
+  : DEFAULT_API_VERSION
+
+if (RAW_API_VERSION && API_VERSION !== String(RAW_API_VERSION).trim()) {
+  console.warn(
+    `[Sunset Press] Ignoring malformed VITE_SHOPIFY_API_VERSION ` +
+      `(${JSON.stringify(RAW_API_VERSION)}); expected YYYY-MM. ` +
+      `Falling back to ${DEFAULT_API_VERSION}.`
+  )
+}
 
 /** True once both credentials are present. Everything degrades gracefully if not. */
 export const isShopifyConfigured = Boolean(DOMAIN && TOKEN)
