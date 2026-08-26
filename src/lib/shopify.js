@@ -137,6 +137,30 @@ export async function fetchProductsByHandle(handles) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Checkout hand-off                                                   */
+/* ------------------------------------------------------------------ */
+
+/** `gid://shopify/ProductVariant/123` -> `123` */
+const numericVariantId = (gid) => String(gid).split('/').pop()
+
+/**
+ * Build a classic cart permalink: /cart/<variantId>:<qty>,<variantId>:<qty>
+ *
+ * We do NOT use the Cart API's own `checkoutUrl`. On this store the
+ * /cart/c/<token> route it returns responds 404 and dumps the shopper back on
+ * the homepage — silently losing the sale at the final step. The permalink is
+ * the long-standing route: Shopify rebuilds the cart from it, applies the same
+ * automatic Buy X Get Y discounts, and redirects to the real checkout.
+ */
+export function buildCartPermalink(lines) {
+  if (!DOMAIN) return null
+  const parts = (lines ?? [])
+    .filter((l) => l.variantId && l.quantity > 0)
+    .map((l) => `${numericVariantId(l.variantId)}:${l.quantity}`)
+  return parts.length ? `https://${DOMAIN}/cart/${parts.join(',')}` : null
+}
+
+/* ------------------------------------------------------------------ */
 /* Cart                                                                */
 /* ------------------------------------------------------------------ */
 

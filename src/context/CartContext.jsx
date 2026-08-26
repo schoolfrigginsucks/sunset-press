@@ -9,6 +9,7 @@ import {
 } from 'react'
 import {
   addCartLines,
+  buildCartPermalink,
   createCart,
   fetchCart,
   isShopifyConfigured,
@@ -175,7 +176,16 @@ export function CartProvider({ children }) {
   )
 
   const checkout = useCallback(() => {
-    if (cart?.checkoutUrl) {
+    /*
+     * Prefer a cart permalink over cart.checkoutUrl. The Cart API hands back a
+     * /cart/c/<token> URL that 404s on this store and bounces the shopper to the
+     * homepage; the permalink route rebuilds the same cart, keeps the automatic
+     * bundle discounts, and lands on the real checkout.
+     */
+    const permalink = buildCartPermalink(cart?.lines)
+    if (permalink) {
+      window.location.href = permalink
+    } else if (cart?.checkoutUrl) {
       window.location.href = cart.checkoutUrl
     } else {
       /*
