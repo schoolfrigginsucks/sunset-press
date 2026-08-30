@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { TIERS, money, priceBundle } from '../data/products'
+import { TIERS, money, priceBundle, shippingLine } from '../data/products'
 import { useCart } from '../context/CartContext'
 import { useColour } from '../context/ColourContext'
 import Button from './Button'
@@ -13,7 +13,7 @@ function defaultSlots(colours, n, previous = []) {
 
 export default function BundleSelector() {
   const { addLines, busy, isDemo } = useCart()
-  const { colours } = useColour()
+  const { colours, country } = useColour()
   const [tierId, setTierId] = useState('trio')
   const [slots, setSlots] = useState([])
 
@@ -236,7 +236,7 @@ export default function BundleSelector() {
               <p className="mt-3 text-center text-xs leading-relaxed text-ink-400">
                 {isDemo
                   ? 'Demo cart — add Shopify credentials to check out for real.'
-                  : 'Discount applied at checkout. Free shipping Australia-wide.'}
+                  : `Discount applied at checkout. ${shippingLine(country)}`}
               </p>
             </div>
           </div>

@@ -18,6 +18,7 @@ import {
 export function useCatalogue() {
   const [colours, setColours] = useState(COLOURS)
   const [currency, setCurrency] = useState('AUD')
+  const [country, setCountry] = useState(null)
   const [live, setLive] = useState(false)
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export function useCatalogue() {
       try {
         const loc = await fetchLocalization()
         country = loc.country
+        if (!cancelled && country) setCountry(country)
         if (!cancelled && loc.currency) {
           setDisplayCurrency(loc.currency)
           setCurrency(loc.currency)
@@ -68,5 +70,5 @@ export function useCatalogue() {
     }
   }, [])
 
-  return { colours, currency, live }
+  return { colours, currency, country, live }
 }

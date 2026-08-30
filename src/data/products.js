@@ -135,6 +135,18 @@ export function setDisplayCurrency(currency) {
 
 export const getDisplayCurrency = () => DISPLAY_CURRENCY
 
+/**
+ * Shipping is free inside Australia and $7.99 everywhere else. Most of the
+ * traffic is American, so a blanket "free shipping" promise reads as a lie the
+ * moment they reach checkout — the single most common reason a full cart gets
+ * abandoned. Say the true thing for whoever is reading.
+ */
+export function shippingLine(country) {
+  return country && country !== 'AU'
+    ? 'Free shipping in Australia. Flat $7.99 worldwide.'
+    : 'Free shipping Australia-wide.'
+}
+
 export const money = (n) =>
   /*
    * The neutral 'en' locale is deliberate: it renders AUD as "A$49.95" and USD

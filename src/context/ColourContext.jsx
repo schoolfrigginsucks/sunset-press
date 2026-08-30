@@ -15,7 +15,7 @@ const ColourContext = createContext(null)
  * them importing the static list and quietly going stale.
  */
 export function ColourProvider({ children }) {
-  const { colours, currency, live } = useCatalogue()
+  const { colours, currency, country, live } = useCatalogue()
   const [colourId, setColourId] = useState(COLOURS[0].id)
 
   const colour = useMemo(
@@ -31,8 +31,8 @@ export function ColourProvider({ children }) {
   }, [colour])
 
   const value = useMemo(
-    () => ({ colour, colourId, setColourId, colours, currency, live }),
-    [colour, colourId, colours, currency, live]
+    () => ({ colour, colourId, setColourId, colours, currency, country, live }),
+    [colour, colourId, colours, currency, country, live]
   )
 
   return <ColourContext.Provider value={value}>{children}</ColourContext.Provider>

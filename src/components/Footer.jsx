@@ -67,7 +67,7 @@ export default function Footer() {
             </a>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-600">
               One very good bottle, in four colours. Designed in Perth, shipped
-              Australia-wide.
+              worldwide.
             </p>
 
             <ul className="mt-6 flex gap-2">
