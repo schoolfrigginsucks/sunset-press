@@ -136,14 +136,13 @@ export function setDisplayCurrency(currency) {
 export const getDisplayCurrency = () => DISPLAY_CURRENCY
 
 /**
- * Shipping is free inside Australia and $7.99 everywhere else. Most of the
- * traffic is American, so a blanket "free shipping" promise reads as a lie the
- * moment they reach checkout — the single most common reason a full cart gets
- * abandoned. Say the true thing for whoever is reading.
+ * The Shopify delivery profile ships free to Australia (Standard) and free to
+ * every international zone (Standard international, $0.00). Say so — an
+ * unqualified "Australia-wide" reads to an American as "not you".
  */
 export function shippingLine(country) {
   return country && country !== 'AU'
-    ? 'Free shipping in Australia. Flat $7.99 worldwide.'
+    ? 'Free worldwide shipping.'
     : 'Free shipping Australia-wide.'
 }
 
