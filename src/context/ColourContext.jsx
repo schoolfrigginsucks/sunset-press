@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { COLOURS } from '../data/products'
+import { useCatalogue } from '../hooks/useCatalogue'
 
 const ColourContext = createContext(null)
 
@@ -8,13 +9,18 @@ const ColourContext = createContext(null)
  * so every `var(--accent)` on the page follows the bottle the customer is
  * looking at. Doing it at the root (rather than threading props) means the nav,
  * buttons, glows and focus rings all change together in one paint.
+ *
+ * It also owns the live catalogue, so Shopify prices — in the shopper's own
+ * currency — reach every component through one context rather than each of
+ * them importing the static list and quietly going stale.
  */
 export function ColourProvider({ children }) {
+  const { colours, currency, live } = useCatalogue()
   const [colourId, setColourId] = useState(COLOURS[0].id)
 
   const colour = useMemo(
-    () => COLOURS.find((c) => c.id === colourId) ?? COLOURS[0],
-    [colourId]
+    () => colours.find((c) => c.id === colourId) ?? colours[0],
+    [colourId, colours]
   )
 
   useEffect(() => {
@@ -25,8 +31,8 @@ export function ColourProvider({ children }) {
   }, [colour])
 
   const value = useMemo(
-    () => ({ colour, colourId, setColourId, colours: COLOURS }),
-    [colour, colourId]
+    () => ({ colour, colourId, setColourId, colours, currency, live }),
+    [colour, colourId, colours, currency, live]
   )
 
   return <ColourContext.Provider value={value}>{children}</ColourContext.Provider>

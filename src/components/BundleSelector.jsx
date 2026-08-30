@@ -1,29 +1,31 @@
 import { useEffect, useMemo, useState } from 'react'
-import { COLOURS, TIERS, money, priceBundle } from '../data/products'
+import { TIERS, money, priceBundle } from '../data/products'
 import { useCart } from '../context/CartContext'
+import { useColour } from '../context/ColourContext'
 import Button from './Button'
 import Reveal from './Reveal'
 import { Section } from './Section'
 
 /** Default fill: one of each colour, cycling if the tier wants more than four. */
-function defaultSlots(n, previous = []) {
-  return Array.from({ length: n }, (_, i) => previous[i] ?? COLOURS[i % COLOURS.length].id)
+function defaultSlots(colours, n, previous = []) {
+  return Array.from({ length: n }, (_, i) => previous[i] ?? colours[i % colours.length].id)
 }
 
 export default function BundleSelector() {
   const { addLines, busy, isDemo } = useCart()
+  const { colours } = useColour()
   const [tierId, setTierId] = useState('trio')
-  const [slots, setSlots] = useState(() => defaultSlots(4))
+  const [slots, setSlots] = useState([])
 
   const tier = TIERS.find((t) => t.id === tierId) ?? TIERS[0]
 
   useEffect(() => {
-    setSlots((prev) => defaultSlots(tier.slots, prev))
-  }, [tier.slots])
+    setSlots((prev) => defaultSlots(colours, tier.slots, prev))
+  }, [tier.slots, colours])
 
   const chosen = useMemo(
-    () => slots.map((id) => COLOURS.find((c) => c.id === id) ?? COLOURS[0]),
-    [slots]
+    () => slots.map((id) => colours.find((c) => c.id === id) ?? colours[0]),
+    [slots, colours]
   )
 
   const { subtotal, total, saving } = useMemo(
@@ -152,7 +154,7 @@ export default function BundleSelector() {
                       aria-label={`Bottle ${index + 1} colour`}
                       className="mt-2.5 flex gap-2"
                     >
-                      {COLOURS.map((opt) => {
+                      {colours.map((opt) => {
                         const on = opt.id === c.id
                         return (
                           <button
