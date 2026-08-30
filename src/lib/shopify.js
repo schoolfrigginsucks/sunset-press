@@ -92,6 +92,39 @@ function cleanVariantTitle(title) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Buyer localisation                                                  */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Shopify infers the buyer's country from the IP of the request, and since
+ * these calls come straight from the shopper's browser, it sees the shopper.
+ * Everything downstream is asked for `@inContext(country:)` so an American
+ * sees USD rather than a bare "$49.95" they will read as dollars they know.
+ */
+let BUYER_COUNTRY = null
+
+export function getBuyerCountry() {
+  return BUYER_COUNTRY
+}
+
+export async function fetchLocalization() {
+  const data = await storefront(`
+    query Localization {
+      localization {
+        country { isoCode name currency { isoCode symbol } }
+      }
+    }
+  `)
+  const c = data?.localization?.country
+  if (c?.isoCode) BUYER_COUNTRY = c.isoCode
+  return {
+    country: c?.isoCode ?? null,
+    countryName: c?.name ?? null,
+    currency: c?.currency?.isoCode ?? null,
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Products                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -121,12 +154,14 @@ const PRODUCT_FIELDS = `
  * Returns a map of handle -> normalised product, so callers can overlay live
  * data onto the static copy without losing the hand-written blurbs.
  */
-export async function fetchProductsByHandle(handles) {
+export async function fetchProductsByHandle(handles, country = BUYER_COUNTRY) {
   const aliases = handles
     .map((h, i) => `p${i}: product(handle: ${JSON.stringify(h)}) { ${PRODUCT_FIELDS} }`)
     .join('\n')
 
-  const data = await storefront(`query Catalogue { ${aliases} }`)
+  // @inContext makes Shopify return the market price for that country
+  const ctx = country ? `@inContext(country: ${country})` : ''
+  const data = await storefront(`query Catalogue ${ctx} { ${aliases} }`)
 
   const byHandle = {}
   handles.forEach((handle, i) => {
@@ -267,9 +302,11 @@ function assertNoUserErrors(payload) {
 }
 
 export async function createCart(lines = []) {
+  // buyerIdentity keeps the cart in the same currency the prices were shown in
+  const buyer = BUYER_COUNTRY ? `, buyerIdentity: { countryCode: ${BUYER_COUNTRY} }` : ''
   const data = await storefront(
     `mutation CartCreate($lines: [CartLineInput!]) {
-      cartCreate(input: { lines: $lines }) {
+      cartCreate(input: { lines: $lines${buyer} }) {
         cart { ${CART_FIELDS} }
         userErrors { field message }
       }

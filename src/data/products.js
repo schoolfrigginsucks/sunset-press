@@ -120,5 +120,30 @@ export function priceBundle(unitPrices, tier) {
   return { subtotal: cents(subtotal), saving: roundedSaving, total: cents(subtotal) - roundedSaving }
 }
 
+/**
+ * Price display follows whichever currency Shopify quoted for this shopper.
+ *
+ * Defaults to AUD because that is the store currency, but once the buyer's
+ * market is known every price re-renders in theirs — an American reading a
+ * bare "$49.95" as USD would otherwise get a surprise at checkout.
+ */
+let DISPLAY_CURRENCY = 'AUD'
+
+export function setDisplayCurrency(currency) {
+  if (currency) DISPLAY_CURRENCY = currency
+}
+
+export const getDisplayCurrency = () => DISPLAY_CURRENCY
+
 export const money = (n) =>
-  new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2 }).format(n)
+  /*
+   * The neutral 'en' locale is deliberate: it renders AUD as "A$49.95" and USD
+   * as "$49.95". Formatting AUD in en-AU gives a bare "$", which an American
+   * reads as their own dollars and then gets a surprise at checkout.
+   */
+  new Intl.NumberFormat('en', {
+    style: 'currency',
+    currency: DISPLAY_CURRENCY,
+    minimumFractionDigits: 2,
+    currencyDisplay: 'symbol',
+  }).format(n)
